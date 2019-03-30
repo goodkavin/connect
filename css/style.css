@@ -13,6 +13,26 @@ a {
 	background: #eee;
 	margin-bottom: 25px;
 }
+.container{
+	width: 50%;
+	margin: auto;
+	overflow: hidden;
+}
+
+#boxes{
+	margin-top: 20px;
+}
+
+#boxes .box{
+	float:left;
+	text-align: center;
+	width: 30%;
+	padding: 10px 10px 10px 10px;
+}
+
+#boxes .box img{
+	width: 90px;
+}
 
 	
 	.nav {
