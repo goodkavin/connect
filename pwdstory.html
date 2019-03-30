@@ -22,6 +22,42 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
 </head>
 <body>
+    <script type="text/javascript"> 
+      var abc = "ศักดิ์ชัย กฐินเทศ" 
+        fetch('http://localhost:4000/info/'+abc)
+          .then(response => {
+            return response.json()
+          })
+          .then(data => {
+            //console.log(data)
+            var lookup = {};
+            var items = data.data;
+            var result = [];
+            for (var item, i = 0; item = items[i++];) {
+              var search_age = item.age;
+              var search_role = item.job_role;
+              var search_type = item.job_type;
+              var search_agency = item.agency;
+              var search_company = item.company;
+              result.push(search_age);
+              result.push(search_role);
+              result.push(search_type);
+              result.push(search_agency);
+              result.push(search_company);
+                $("#info1").html(result[0]);
+                $("#info2").html(result[1]);
+                $("#info3").html(result[2]);
+                $("#info4").html(result[3]);
+                $("#info5").html(result[4]);
+            
+              }
+           
+          })
+          .catch(err => {
+            // Do something for an error here
+          })
+        </script>
+
     <div id="header">
         <div style="float: left; display: block; height: 70px; padding: 13px 25px; font-size: 25px; font-weight: bold;">
           connect
@@ -51,12 +87,12 @@
     </div>
     <div class="col-6">
       <div>
-        <h3>นาย เอลิส กตแก้ว</h3>
-        <p>อายุ: 28ปี</p>
-        <p>ตำแหน่ง: ผู้ช่วยครู</p>
-        <p>ประเภทงาน: งานประจำ</p>
-        <p>หน่วยงานที่ดูแล: โรงเรียนโสตศึกษาจังหวัดนครปฐม</p>
-        <p>บริษัทที่สังกัด: บริษัท LC จำกัด</p>
+        <h3><b>นาย ศักดิ์ชัย กฐินเทศ</b></h3>
+        <p><b>อายุ: </b><span id="info1"></span></p>
+        <p ><b>ตำแหน่ง: </b><span id="info2"></span></p>
+        <p><b>ประเภทงาน: </b><span id="info3"></span></p>
+        <p><b>หน่วยงานที่ดูแล: </b><span id="info4"></span></p>
+        <p><b>บริษัทที่สังกัด: </b><span id="info5"></span></p>
         </div>
         
 
@@ -66,7 +102,7 @@
 </br>
   <div id="experience" align="center">
     <h1>
-      Success experiences
+      เรื่องที่ประสบความสำเร็จ
     </h1>
     
       <li><i class="fa fa-globe"></i> Proin sodales nibh eu posuere hendrerit. Sed urna neque, elementum id aliquet eu, hendrerit in purus.</li>

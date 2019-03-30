@@ -100,7 +100,7 @@ app.get('/a/:company_name', (req, res) =>{
 });
 
 //get all PWDs' information from PWDs' name
-app.get('/:pwd_name/info', (req, res) =>{
+app.get('/info/:pwd_name', (req, res) =>{
     var pwd_name = req.params.pwd_name;
     const SELECT_PWD_FROM_SPECIFIC_COMPANY_QUERY = 'SELECT age,job_role,job_type,agency,company FROM source WHERE name="'+pwd_name+'"'
 	db.query(SELECT_PWD_FROM_SPECIFIC_COMPANY_QUERY, (err,results) =>{
