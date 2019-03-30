@@ -48,27 +48,14 @@
 
     <div class="col-12"><h5>รายชื่อบริษัท</h5></div>
 
-    <div class="col-12" style="margin-bottom: 20px;">
-      <div class="industry">ประกันภัย</div>
-      <div class="industry">โรงพยาบาล</div>
-      <div class="industry">สาธารณสุข</div>
-      <div class="industry">โรงงาน</div>
-    </div>
-
-    <div class="col-12 company">
-      <a href="company/company.html"><img src="images/logo-accenture.png"></a>
-      <img src="images/logo-ksk.png">
-      <img src="images/logo-bts.png">
-      <img src="images/logo-ptt.png">
-      <img src="images/logo-bdms.png">
-    </div>
+    <div class="col-12" id="company_list"></div>
 
   </div>
 
 </div>
 
 <div class="text-center" style="padding: 80px; background: #eee;">
-  <div style="margin-bottom: 30px;"><h3>เข้าร่วมแล้วกว่า 1,000 บริษัท</h3></div>
+  <div style="margin-bottom: 30px;"><h3>เข้าร่วมแล้วกว่า 60 บริษัท</h3></div>
   <button type="button" class="btn btn-dark">เข้าร่วมโครงการ</button>
 </div>
 
@@ -85,8 +72,8 @@
 
     var data = google.visualization.arrayToDataTable([
       ['Type', 'person'],
-      ['มีงานทำ', 90000],
-      ['ว่างงาน', 300000],
+      ['มีงานทำ (Employed PWDs)', 90000],
+      ['ว่างงาน (Unemployed PWDs)', 300000],
     ]);
 
     var options = {
@@ -105,8 +92,21 @@ fetch('http://18.136.107.236:4000/pwd')
     return response.json()
   })
   .then(data => {
-    // Work with JSON data here
-    console.log(data)
+    //console.log(data)
+    var lookup = {};
+    var items = data.data;
+    var result = [];
+
+    for (var item, i = 0; item = items[i++];) {
+      var search = item.company;
+
+      if (!(search in lookup)) {
+        lookup[search] = 1;
+        result.push(search);
+        $("#company_list").append('<div class="company_each"><a href="company/company.html?comapany=' + search + '">' + search + '</a></div> ');
+      }
+    }
+    console.log(result);
   })
   .catch(err => {
     // Do something for an error here
