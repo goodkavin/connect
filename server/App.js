@@ -92,6 +92,20 @@ app.get('/publish/:id', (req, res) =>{
 			return res.send(err)
 		}
 		else{
+			return res.send('1')
+		}
+	});
+});
+
+/*----------------- get published PWD --------------------*/
+app.get('/published', (req, res) =>{
+	var id = req.params.id;
+	const GET_PUBLISHED_QUERY = 'SELECT * FROM `connect`.source WHERE published=1'
+	db.query(GET_PUBLISHED_QUERY, (err,results) =>{
+		if (err) {
+			return res.send(err)
+		}
+		else{
 			return res.json({
 				data: results
 			})
