@@ -83,6 +83,21 @@ app.get('/id/:id', (req, res) =>{
 	});
 });
 
+/*----------------- publish story ------------------------*/
+app.get('/publish/:id', (req, res) =>{
+	var id = req.params.id;
+	const UPDATE_PUBLISHED_QUERY = 'UPDATE `connect`.source SET published=1 WHERE id="'+ id +'"'
+	db.query(UPDATE_PUBLISHED_QUERY, (err,results) =>{
+		if (err) {
+			return res.send(err)
+		}
+		else{
+			return res.json({
+				data: results
+			})
+		}
+	});
+});
 
 // set the app to listen on the port
 app.listen(port, () => {
