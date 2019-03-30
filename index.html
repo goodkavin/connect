@@ -33,32 +33,37 @@
 
   <div class="row">
 
-    <div class="col-12 text-center" style="margin-top: 30px;"><h2>"ภารกิจลดจำนวนผู้ว่างงานของผู้พิการ"</h2></div>
+    <div class="col-12 text-center"><h3>"ภารกิจลดจำนวนผู้ว่างงานของผู้พิการ"</h3></div>
 
-    <div class="col-12" style="margin-top: 40px; margin-bottom: 40px;"><hr></div>
+    <div class="col-12"><h5>จำนวนคนว่างงานที่เหลือ</h5></div>
 
-    <div class="col-12 text-center"><h5>จำนวนคนว่างงานที่เหลือ</h5></div>
-
-    <div class="col-12 text-center">
-      <h1><div id="dynamic-number" align="center">390000</div> </h1>คนว่างงาน
+    <div class="col-12">
+      <div id="piechart" style="width: 100%; height: 500px;"></div>
     </div>
 
-    <div class="col-12" style="margin-top: 20px; margin-bottom: 50px;">
-      <div class="progress">
-       <div class="progress-bar bg-danger" style="width:70%">70% ของคนพิการยังคง "ว่างงาน"</div>
-    </div>
+    <div class="col-12"><h5>รายชื่อบริษัท</h5></div>
+
+    <div class="col-12" style="margin-bottom: 20px;">
+      <div class="industry">ประกันภัย</div>
+      <div class="industry">โรงพยาบาล</div>
+      <div class="industry">สาธารณสุข</div>
+      <div class="industry">โรงงาน</div>
     </div>
 
-    <div class="col-12 text-center"><h5>รายชื่อบริษัท</h5></div>
-
-    <div class="col-12" id="company_list"></div>
+    <div class="col-12 company">
+      <a href="company.html"><img src="images/logo-accenture.png"></a>
+      <img src="images/logo-ksk.png">
+      <img src="images/logo-bts.png">
+      <img src="images/logo-ptt.png">
+      <img src="images/logo-bdms.png">
+    </div>
 
   </div>
 
 </div>
 
 <div class="text-center" style="padding: 80px; background: #eee;">
-  <div style="margin-bottom: 30px;"><h3>เข้าร่วมแล้วกว่า 60 บริษัท</h3></div>
+  <div style="margin-bottom: 30px;"><h3>เข้าร่วมแล้วกว่า 1,000 บริษัท</h3></div>
   <button type="button" class="btn btn-dark">เข้าร่วมโครงการ</button>
 </div>
 
@@ -75,8 +80,8 @@
 
     var data = google.visualization.arrayToDataTable([
       ['Type', 'person'],
-      ['มีงานทำ (Employed PWDs)', 90000],
-      ['ว่างงาน (Unemployed PWDs)', 300000],
+      ['มีงานทำ', 90000],
+      ['ว่างงาน', 300000],
     ]);
 
     var options = {
@@ -95,34 +100,12 @@ fetch('http://18.136.107.236:4000/pwd')
     return response.json()
   })
   .then(data => {
-    //console.log(data)
-    var lookup = {};
-    var items = data.data;
-    var result = [];
-
-    for (var item, i = 0; item = items[i++];) {
-      var search = item.company;
-
-      if (!(search in lookup)) {
-        lookup[search] = 1;
-        result.push(search);
-        $("#company_list").append('<div class="company_each"><a href="company.html?comapany=' + search + '">' + search + '</a></div> ');
-      }
-    }
-    console.log(result);
+    // Work with JSON data here
+    console.log(data)
   })
   .catch(err => {
     // Do something for an error here
   })
-
-  var currentNumber = $('#dynamic-number').text();
-  $({numberValue: currentNumber}).animate({numberValue: 300000}, {
-      duration: 8000,
-      easing: 'linear',
-      step: function() {
-          $('#dynamic-number').text(Math.ceil(this.numberValue)); 
-      }
-  });
 </script>
 
 </body>
