@@ -5,6 +5,8 @@ const mysql = require('mysql');
 const path = require('path');
 const app = express();
 
+const SELECT_ALL_PWD_QUERY = 'SELECT * FROM source LIMIT 100';
+
 // const {getHomePage} = require('./routes/index');
 // const {addPlayerPage, addPlayer, deletePlayer, editPlayer, editPlayerPage} = require('./routes/player');
 const port = 3306;
@@ -30,6 +32,21 @@ global.db = db;
 app.get('/', (req, res) => {
     res.send('Hello from Connect server!')
 });
+
+/*-------------------------- pwd --------------------------*/
+app.get('/pwd', (req, res) =>{
+	db.query(SELECT_ALL_PWD_QUERY, (err,results) =>{
+		if (err) {
+			return res.send(err)
+		}
+		else{
+			return res.json({
+				data: results
+			})
+		}
+	});
+});
+
 
 // set the app to listen on the port
 app.listen(port, () => {
