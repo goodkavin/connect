@@ -6,11 +6,8 @@ const path = require('path');
 const app = express();
 
 const SELECT_ALL_PWD_QUERY = 'SELECT * FROM source LIMIT 100';
-<<<<<<< HEAD
-=======
 const SELECT_ALL_NAME_QUERY = 'SELECT name FROM source LIMIT 100';
 const SELECT_ALL_AGE_QUERY = 'SELECT age FROM source LIMIT 100';
->>>>>>> develop
 
 // const {getHomePage} = require('./routes/index');
 // const {addPlayerPage, addPlayer, deletePlayer, editPlayer, editPlayerPage} = require('./routes/player');
@@ -58,8 +55,6 @@ app.get('/pwd', (req, res) =>{
 	});
 });
 
-<<<<<<< HEAD
-=======
 //get all PWDs' name
 app.get('/name', (req, res) =>{
 	db.query(SELECT_ALL_NAME_QUERY, (err,results) =>{
@@ -119,7 +114,6 @@ app.get('/info/:pwd_name', (req, res) =>{
 		}
 	});
 });
->>>>>>> develop
 
 // set the app to listen on the port
 app.listen(port, () => {
