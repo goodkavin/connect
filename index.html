@@ -103,7 +103,7 @@ fetch('http://18.136.107.236:4000/pwd')
       if (!(search in lookup)) {
         lookup[search] = 1;
         result.push(search);
-        $("#company_list").append('<div class="company_each"><a href="company/company.html?comapany=' + search + '">' + search + '</a></div> ');
+        $("#company_list").append('<div class="company_each"><a href="company.html?comapany=' + search + '">' + search + '</a></div> ');
       }
     }
     console.log(result);
