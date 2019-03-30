@@ -18,22 +18,85 @@
   <script src="js/script.js"></script>
 </head>
 <body>
-  <title>Connect</title>
-  
-<div id="header"></div>
+
+
+<div id="header">
+  <div style="float: left; display: block; height: 70px; padding: 13px 25px; font-size: 25px; font-weight: bold;">
+    connect
+  </div>
+  <div style="float: right; display: block; height: 70px;">
+    <ul>
+      <li>Menu 1</li>
+      <li>Menu 2</li>
+      <li>Menu 3</li>
+      <li>Menu 4</li>
+    </ul>
+  </div>
+</div>
 
 <div class="container">
 
   <div class="row">
 
-    <div class="col-12">Connect</div>
-    
+    <div class="col-12 text-center"><h3>"ภารกิจลดจำนวนผู้ว่างงานของผู้พิการ"</h3></div>
+
+    <div class="col-12"><h5>จำนวนคนว่างงานที่เหลือ</h5></div>
+
+    <div class="col-12">
+      <div id="piechart" style="width: 100%; height: 500px;"></div>
+    </div>
+
+    <div class="col-12"><h5>รายชื่อบริษัท</h5></div>
+
+    <div class="col-12" style="margin-bottom: 20px;">
+      <div class="industry">ประกันภัย</div>
+      <div class="industry">โรงพยาบาล</div>
+      <div class="industry">สาธารณสุข</div>
+      <div class="industry">โรงงาน</div>
+    </div>
+
+    <div class="col-12 company">
+      <a href="company/company.html"><img src="images/logo-bdms.png"></a>
+      <img src="images/logo-ksk.png">
+      <img src="images/logo-bts.png">
+      <img src="images/logo-ptt.png">
+    </div>
 
   </div>
 
 </div>
 
-<div id="footer"></div>
+<div class="text-center" style="padding: 100px; background: #eee;">
+  <div style="margin-bottom: 30px;">เข้าร่วมแล้วกว่า 1,000 บริษัท</div>
+  <button type="button" class="btn btn-dark">เข้าร่วมโครงการ</button>
+</div>
+
+<div id="footer">
+  <div style="margin-top: 30px; margin-bottom: 30px; text-align: center;">Footer</div>
+</div>
+
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+<script type="text/javascript">
+  google.charts.load('current', {'packages':['corechart']});
+  google.charts.setOnLoadCallback(drawChart);
+
+  function drawChart() {
+
+    var data = google.visualization.arrayToDataTable([
+      ['Type', 'person'],
+      ['มีงานทำ', 90000],
+      ['ว่างงาน', 300000],
+    ]);
+
+    var options = {
+      is3D: true,
+    };
+
+    var chart = new google.visualization.PieChart(document.getElementById('piechart'));
+
+    chart.draw(data, options);
+  }
+</script>
 
 </body>
 </html>

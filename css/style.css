@@ -7,10 +7,39 @@ a {
 	text-decoration: none;
 }
 
-.admin_navigator {
-	padding-bottom: 7px;
-	margin-bottom: 15px;
-	border-bottom: 1px solid #eee;
+#header {
+	height: 70px;
+	background: #eee;
+	margin-bottom: 25px;
+}
+
+#header ul {
+	list-style-type: none;
+}
+
+#header ul li {
+	padding: 23px 25px;
+	display: inline-block;
+	margin: 0;
+}
+
+#header ul li:hover {
+	background: #ccc;
+}
+
+#boxes{
+	margin-top: 20px;
+}
+
+#boxes .box{
+	float:left;
+	text-align: center;
+	width: 30%;
+	padding: 10px 10px 10px 10px;
+}
+
+#boxes .box img{
+	width: 90px;
 }
 
 	
@@ -37,3 +66,19 @@ a {
 	.nav a:hover {
 		background-color: #111;
 	}
+
+.company {
+	text-align: center;
+}
+
+.company img{
+	max-height: 80px;
+	margin: 30px;
+	margin-top: 10px;
+}
+
+.industry {
+	display: inline-block;
+	padding: 6px 15px;
+	border: 1px solid #eee;
+}
