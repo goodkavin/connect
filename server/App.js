@@ -1,5 +1,5 @@
 const express = require('express');
-const fileUpload = require('express-fileupload');
+//const fileUpload = require('express-fileupload');
 const bodyParser = require('body-parser');
 const mysql = require('mysql');
 const path = require('path');
@@ -9,7 +9,7 @@ const SELECT_ALL_PWD_QUERY = 'SELECT * FROM source LIMIT 100';
 
 // const {getHomePage} = require('./routes/index');
 // const {addPlayerPage, addPlayer, deletePlayer, editPlayer, editPlayerPage} = require('./routes/player');
-const port = 3306;
+const port = 4000;
 
 // create connection to database
 // the mysql.createConnection function takes in a configuration object which contains host, user, password and the database name.
