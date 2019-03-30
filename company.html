@@ -35,14 +35,13 @@
           </ul>
         </div>
       </div>
-
+        
 <div class="container">
   
 
    <div class="row">
     <div class="col-4">
           <img src="images/accenture-logo.png">
-
         </div>
 
         <div class="col-8">
@@ -53,52 +52,78 @@
 
         </div>
   </div>
-
   <div class="row" >
   <h4> 
   Interesting Stories 
   <p></p> 
   </h4>
-  </div>  
+  </div>
+
+
+  <script type="text/javascript"> 
+    var abc = "บริษัท KT จำกัด" 
+      fetch('http://localhost:4000/a/'+abc)
+        .then(response => {
+          return response.json()
+        })
+        .then(data => {
+          //console.log(data)
+          var lookup = {};
+          var items = data.data;
+          var result = [];
+
+          for (var item, i = 0; item = items[i++];) {
+            var search = item.name;
+      
+            if (!(search in lookup)) {
+              lookup[search] = 1;
+              result.push(search);
+              
+              $("#person1").html(result[0]);
+              $("#person2").html(result[1]);
+              $("#person3").html(result[2]);
+            }
+          }
+          console.log(result);
+        })
+        .catch(err => {
+          // Do something for an error here
+        })
+      </script>
+
+      
   <div class="row">
         <div class="col-4">
           <a href="./pwdstory.html">
           <img src="images/avatar.png" width="200" height="200" >
           </a>
-          <h3> Person 1 </h3>
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+          <h3 id="person1"> Person 1 </h3>
+          <p>ประเภทงาน: ติดตามประเมินผลการทำงานคนพิการ</p>
           <a href="#" class="btn btn-primary">See Profile</a>
         </div>
 
 
         <div class="col-4" >
-          <a href=".pwdstory.html">
+          <a href="./pwdstory.html">
           <img src="images/avatar.png" width="200" height="200" >
           </a>
-          <h3> Person 2 </h3>
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+          <h3 id="person2"> Person 2 </h3>
+          <p>ประเภทงาน: นวดผ่อนคลายในสถานประกอบการ</p>
           <a href="#" class="btn btn-primary">See Profile</a>
         </div>
 
         <div class="col-4">
-          <a href=".pwdstory.html">
+          <a href="./pwdstory.html">
           <img src="images/avatar.png" width="200" height="200" >
           </a>
-          <h3> Person 3 </h3>
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+          <h3 id="person3">> Person 3 </h3>
+          <p>ประเภทงาน: พนักงานบริการทั่วไป</p>
           <a href="" class="btn btn-primary">See Profile</a>
         </div>
 
   </div>
 
 </div>
-
-
-      
-        
-        
-      
-    
 
 <div id="footer"></div>
 

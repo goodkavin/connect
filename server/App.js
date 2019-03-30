@@ -7,6 +7,7 @@ const app = express();
 
 const SELECT_ALL_PWD_QUERY = 'SELECT * FROM source LIMIT 100';
 const SELECT_ALL_NAME_QUERY = 'SELECT name FROM source LIMIT 100';
+const SELECT_ALL_AGE_QUERY = 'SELECT age FROM source LIMIT 100';
 
 // const {getHomePage} = require('./routes/index');
 // const {addPlayerPage, addPlayer, deletePlayer, editPlayer, editPlayerPage} = require('./routes/player');
@@ -54,6 +55,7 @@ app.get('/pwd', (req, res) =>{
 	});
 });
 
+//get all PWDs' name
 app.get('/name', (req, res) =>{
 	db.query(SELECT_ALL_NAME_QUERY, (err,results) =>{
 		if (err) {
@@ -67,7 +69,51 @@ app.get('/name', (req, res) =>{
 	});
 });
 
+//get all PWDs' age
+app.get('/age', (req, res) =>{
+	db.query(SELECT_ALL_AGE_QUERY, (err,results) =>{
+		if (err) {
+			return res.send(err)
+		}
+		else{
+			return res.json({
+				data: results
+			})
+		}
+	});
+});
 
+//get all PWDs' name from specific company
+app.get('/a/:company_name', (req, res) =>{
+    var company_name = req.params.company_name;
+    const SELECT_PWD_FROM_SPECIFIC_COMPANY_QUERY = 'SELECT name FROM source WHERE company="'+company_name+'"'
+	db.query(SELECT_PWD_FROM_SPECIFIC_COMPANY_QUERY, (err,results) =>{
+		if (err) {
+			return res.send(err)
+		}
+		else{
+			return res.json({
+				data: results
+			})
+		}
+	});
+});
+
+//get all PWDs' information from PWDs' name
+app.get('/info/:pwd_name', (req, res) =>{
+    var pwd_name = req.params.pwd_name;
+    const SELECT_PWD_FROM_SPECIFIC_COMPANY_QUERY = 'SELECT age,job_role,job_type,agency,company FROM source WHERE name="'+pwd_name+'"'
+	db.query(SELECT_PWD_FROM_SPECIFIC_COMPANY_QUERY, (err,results) =>{
+		if (err) {
+			return res.send(err)
+		}
+		else{
+			return res.json({
+				data: results
+			})
+		}
+	});
+});
 
 // set the app to listen on the port
 app.listen(port, () => {
