@@ -40,7 +40,7 @@ app.get('/', (req, res) => {
     res.send('Hello from Connect server!')
 });
 
-/*-------------------------- pwd --------------------------*/
+/*-------------------------- all pwd -------------------------*/
 app.get('/pwd', (req, res) =>{
 	db.query(SELECT_ALL_PWD_QUERY, (err,results) =>{
 		if (err) {
@@ -67,6 +67,21 @@ app.get('/name', (req, res) =>{
 	});
 });
 
+/*--------------------- search id ------------------------*/
+app.get('/id/:id', (req, res) =>{
+	var id = req.params.id;
+	const SEARCH_BY_ID_QUERY = 'SELECT name, id FROM `connect`.source WHERE id LIKE "'+ id +'%"'
+	db.query(SEARCH_BY_ID_QUERY, (err,results) =>{
+		if (err) {
+			return res.send(err)
+		}
+		else{
+			return res.json({
+				data: results
+			})
+		}
+	});
+});
 
 
 // set the app to listen on the port
