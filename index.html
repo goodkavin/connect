@@ -38,15 +38,23 @@
 
   <div class="row">
 
-    <div class="col-12 text-center"><h3>"ภารกิจลดจำนวนผู้ว่างงานของผู้พิการ"</h3></div>
+    <div class="col-12 text-center" style="margin-top: 30px;"><h2>"ภารกิจลดจำนวนผู้ว่างงานของผู้พิการ"</h2></div>
 
-    <div class="col-12"><h5>จำนวนคนว่างงานที่เหลือ</h5></div>
+    <div class="col-12" style="margin-top: 40px; margin-bottom: 40px;"><hr></div>
 
-    <div class="col-12">
-      <div id="piechart" style="width: 100%; height: 500px;"></div>
+    <div class="col-12 text-center"><h5>จำนวนคนว่างงานที่เหลือ</h5></div>
+
+    <div class="col-12 text-center">
+      <h1><div id="dynamic-number" align="center">390000</div> </h1>คนว่างงาน
     </div>
 
-    <div class="col-12"><h5>รายชื่อบริษัท</h5></div>
+    <div class="col-12" style="margin-top: 20px; margin-bottom: 50px;">
+      <div class="progress">
+       <div class="progress-bar bg-danger" style="width:70%">70% ของคนพิการยังคง "ว่างงาน"</div>
+    </div>
+    </div>
+
+    <div class="col-12 text-center"><h5>รายชื่อบริษัท</h5></div>
 
     <div class="col-12" id="company_list"></div>
 
@@ -111,6 +119,15 @@ fetch('http://18.136.107.236:4000/pwd')
   .catch(err => {
     // Do something for an error here
   })
+
+  var currentNumber = $('#dynamic-number').text();
+  $({numberValue: currentNumber}).animate({numberValue: 300000}, {
+      duration: 8000,
+      easing: 'linear',
+      step: function() {
+          $('#dynamic-number').text(Math.ceil(this.numberValue)); 
+      }
+  });
 </script>
 
 </body>
