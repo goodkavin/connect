@@ -84,7 +84,7 @@ app.get('/age', (req, res) =>{
 });
 
 //get all PWDs' name from specific company
-app.get('/:company_name', (req, res) =>{
+app.get('/a/:company_name', (req, res) =>{
     var company_name = req.params.company_name;
     const SELECT_PWD_FROM_SPECIFIC_COMPANY_QUERY = 'SELECT name FROM source WHERE company="'+company_name+'"'
 	db.query(SELECT_PWD_FROM_SPECIFIC_COMPANY_QUERY, (err,results) =>{
